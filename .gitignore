@@ -1,0 +1,15 @@
+.dub
+docs.json
+__dummy.html
+docs/
+/dasfor
+dasfor.so
+dasfor.dylib
+dasfor.dll
+dasfor.a
+dasfor.lib
+dasfor-test-*
+*.exe
+*.o
+*.obj
+*.lst

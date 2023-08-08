@@ -1,0 +1,9 @@
+{
+	"authors": [
+		"doigt"
+	],
+	"copyright": "Copyright © 2023, doigt",
+	"description": "A better string format function",
+	"license": "mit",
+	"name": "dasfor"
+}
