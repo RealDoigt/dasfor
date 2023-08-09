@@ -2,24 +2,26 @@ module dasfor;
 import std.conv;
 import std.stdio;
 import std.regex;
+import std.array;
 import std.string;
 import std.typecons : Yes;
 
-auto toRoman(char letter, bool isLowerCase, bool useG)
+auto toRoman(char letter, bool isLowerCase = false, bool useG = true)
 {
-    letter = letter.toLower;
+    letter = cast(char)letter.toLower;
     
-    final switch (letter)
+    switch (letter)
     {
         case 'j':            letter = 'i'; break;
         case 'u', 'w':       letter = 'v'; break;
-        case 'g': if (!useG) letter = 'c';
+        case 'g': if (!useG) letter = 'c'; break;
+        default: break;
     }
     
-    return isLowerCase ? letter : letter.toUpper;
+    return isLowerCase ? letter : cast(char)letter.toUpper;
 }
 
-auto toRoman(string word, bool isLowerCase, bool useG)
+auto toRoman(string word, bool isLowerCase = false, bool useG = true)
 {
     string result;
     
@@ -54,13 +56,36 @@ auto romformat(string source, uint[] args ...)
 auto romformat(string source, string[] args ...)
 {
     auto result = "", 
-         pattern = `\$[0-9]+:?(c|C)?(g|G)`,
+         pattern = `\$[0-9]+:c?g?`,
          splitted = source.splitter!(Yes.keepSeparators)(pattern.regex);
          
     foreach (s; splitted)
     {
         if (s.matchFirst(regex("^" ~ pattern ~ "$")))
-            result ~= args[s[1..$].to!uint];
+        {
+            auto codes = s.split(":");
+            enum m = "args[codes[0][1..$].to!uint]";
+            
+            switch(codes[1].length)
+            {
+                case 2:
+                
+                    result ~= mixin(m).toRoman(false);
+                    break;
+                    
+                case 1:
+                    
+                    if (codes[1] == "c")
+                        result ~= mixin(m).toRoman(false, false);
+                        
+                    else
+                        result ~= mixin(m).toRoman(true);
+                    
+                    break;
+                    
+                default: result ~= mixin(m).toRoman(true, false);
+            }
+        }
         
         else result ~= s;
     }
@@ -100,5 +125,9 @@ void main()
     
     "$2 $1 $0 $1 $0 $2"
     .dasformat("hello", "world", "abc")
+    .writeln;
+    
+    "This $0:g's price will be $1:c and $1:cg, but of $0: quality"
+    .romformat("good", "greatly overvalued")
     .writeln;
 }
