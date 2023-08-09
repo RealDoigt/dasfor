@@ -1,7 +1,6 @@
 module dasfor;
 import std.conv;
 import std.stdio;
-import core.vararg;
 import std.regex;
 
 auto dasformat(Args...)(string source, Args a)
