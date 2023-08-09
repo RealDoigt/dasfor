@@ -2,7 +2,7 @@ module dasfor;
 import std.conv;
 import std.stdio;
 import core.vararg;
-import std.std.regex;
+import std.regex;
 
 auto dasformat(Args...)(string source, Args a)
 {
@@ -25,5 +25,7 @@ auto dasformat(Args...)(string source, Args a)
 
 void main()
 {
-
+    "my mom is a $0, she liked her job as a $0, but now she's ready for a job as $2 or a $1"
+    .dasformat("nurse", "teacher", "research assitant")
+    .writeln;
 }
