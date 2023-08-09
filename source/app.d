@@ -9,7 +9,6 @@ auto toRoman(char letter, bool isLowerCase, bool useG)
 {
     letter = letter.toLower;
     
-    
     final switch (letter)
     {
         case 'j':            letter = 'i'; break;
@@ -18,6 +17,16 @@ auto toRoman(char letter, bool isLowerCase, bool useG)
     }
     
     return isLowerCase ? letter : letter.toUpper;
+}
+
+auto toRoman(string word, bool isLowerCase, bool useG)
+{
+    string result;
+    
+    foreach (l; word) 
+        result ~= l.toRoman(isLowerCase, useG);
+    
+    return result;
 }
 
 /*
@@ -51,7 +60,7 @@ auto romformat(string source, string[] args ...)
     foreach (s; splitted)
     {
         if (s.matchFirst(regex("^" ~ pattern ~ "$")))
-            result ~= items[s[1..$].to!uint];
+            result ~= args[s[1..$].to!uint];
         
         else result ~= s;
     }
