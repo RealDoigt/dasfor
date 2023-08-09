@@ -6,19 +6,52 @@ import std.array;
 import std.string;
 import std.typecons : Yes;
 
-auto toRoman(char letter, bool isLowerCase = false, bool useG = true)
+package
 {
-    letter = cast(char)letter.toLower;
+    enum romanFives = "vld", romanUnits = "ixcm";
     
-    switch (letter)
+    auto toRoman(char letter, bool isLowerCase = false, bool useG = true)
     {
-        case 'j':            letter = 'i'; break;
-        case 'u', 'w':       letter = 'v'; break;
-        case 'g': if (!useG) letter = 'c'; break;
-        default: break;
+        letter = cast(char)letter.toLower;
+        
+        switch (letter)
+        {
+            case 'j':            letter = 'i'; break;
+            case 'u', 'w':       letter = 'v'; break;
+            case 'g': if (!useG) letter = 'c'; break;
+            default: break;
+        }
+        
+        return isLowerCase ? letter : cast(char)letter.toUpper;
     }
     
-    return isLowerCase ? letter : cast(char)letter.toUpper;
+    auto buildRomanUnits(int num, byte level)
+    {
+        string result;
+        
+        for (int i; i < num; ++i)
+            result ~= romanUnits[level];
+            
+        return result;
+    }
+    
+    auto buildRomanNumerals(int num, byte level)
+    {
+        switch (num)
+        {
+            case 0: return "";
+            case 9: return romanUnits[level] ~ romanUnits[level + 1];
+            case 5: return romanFives[level];
+            case 4: return romanUnits[level] ~ romanFives[level];
+            
+            default:
+                
+                if (num > 5)
+                    return romanFives[level] ~ BuildRomanUnits(num - 5, level);
+                    
+                return buildRomanUnits(num, level);
+        }
+    }
 }
 
 auto toRoman(string word, bool isLowerCase = false, bool useG = true)
