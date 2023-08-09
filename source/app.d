@@ -30,4 +30,12 @@ void main()
     "my mom is a $0, she liked her job as a $0, but now she's ready for a job as a $2 or as a $1"
     .dasformat("nurse", "teacher", "research assitant")
     .writeln;
+    
+    "$0 is an int, $1 is a float, $2 is a char and $3 is a string"
+    .dasformat(1, 0.5, '$', "GREETINGS MORTALS")
+    .writeln;
+    
+    "$2 $1 $0 $1 $0 $2"
+    .dasformat("hello", "world", "abc")
+    .writeln;
 }
