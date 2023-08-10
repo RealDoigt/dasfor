@@ -54,6 +54,21 @@ package
     }
 }
 
+auto toRoman(int num, bool isLowerCase = false, bool useJ = false)
+{
+    string result;
+    
+    if (num > 4999 || num < 0) result = "?";
+    else if (num == 0) result = "nulla";
+    
+    else
+    {
+        
+    }
+    
+    return isLowerCase ? result : result.toUpper;
+}
+
 auto toRoman(string word, bool isLowerCase = false, bool useG = true)
 {
     string result;
