@@ -13,3 +13,4 @@ dasfor-test-*
 *.o
 *.obj
 *.lst
+libdasfor.a
