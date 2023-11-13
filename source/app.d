@@ -4,7 +4,7 @@ import std.stdio;
 import std.regex;
 import std.array;
 import std.string;
-import std.typecons : Yes;
+import std.typecons;
 
 auto dasformat(Args...)(string source, Args a)
 {
