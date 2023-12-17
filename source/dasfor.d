@@ -6,6 +6,16 @@ import std.typecons;
 
 auto dasformat(Args...)(string source, Args a)
 {
+    auto doFormat(string str, size_t index)
+    {
+        final switch (index)
+            static foreach(argIndex; 0 .. a.length)
+            {
+                case argIndex:
+                    return str.format(a[argIndex]);
+            }
+    }
+    
     auto result = "", 
          pattern = `\$[0-9]+(:(([a-z]|[A-Z])([0-9]|[a-f]|[A-F])?))?`,
          splitted = source.splitter!(Yes.keepSeparators)(pattern.regex);
@@ -16,67 +26,67 @@ auto dasformat(Args...)(string source, Args a)
         {
             auto markerSplitted = s.split(":"),
                  index = markerSplitted[0][1..$].to!uint,
-                 item = a[index].to!string;
+                 item = doFormat("%s", index);
                  
             if (markerSplitted.length == 2)
                 switch (markerSplitted[1][0])
                 {
                     case 'a', 'A':
-                        item = "%a".format(a[index]);
+                        item = doFormat("%a",index);
                         break;
                         
                     case 'b':
-                        item = "%b".format(a[index]);
+                        item = doFormat("%b",index);
                         break;
                         
                     case 'c':
-                        item = "%c".format(a[index]);
+                        item = doFormat("%c",index);
                         break;
                         
                     case 'd':
                     
                         if (markerSplitted[1].length == 1)
-                            item = "%d".format(a[index]);
+                            item = doFormat("%d",index);
                             
                         else
-                            item = format("%0" ~ markerSplitted[1][1].to!string.to!uint(16).to!string ~ "d", a[index]);
+                            item = doFormat("%0" ~ markerSplitted[1][1].to!string.to!uint(16).to!string ~ "d", index);
                         break;
                         
                     case 'e', 'E':
-                        item = "%e".format(a[index]);
+                        item = doFormat("%e",index);
                         break;
                         
                     case 'f', 'F':
                         
                         if (markerSplitted[1].length == 1)
-                            item = "%f".format(a[index]);
+                            item = doFormat("%f",index);
                         
                         else 
-                            item = format("%0." ~ markerSplitted[1][1].to!string.to!uint(16).to!string ~ "f", a[index]);
+                            item = doFormat("%0." ~ markerSplitted[1][1].to!string.to!uint(16).to!string ~ "f", index);
                         break;
                         
                     case 'g', 'G':
-                        item = "%e".format(a[index]);
+                        item = doFormat("%e",index);
                         break;
                         
                     case 'o':
-                        item = "%o".format(a[index]);
+                        item = doFormat("%o",index);
                         break;
                         
                     case 'r':
-                        item = "%r".format(a[index]);
+                        item = doFormat("%r",index);
                         break;
                     
                     case 's':
-                        item = "%s".format(a[index]);
+                        item = doFormat("%s",index);
                         break;
                         
                     case 'u':
-                        item = "%u".format(a[index]);
+                        item = doFormat("%u",index);
                         break;
                     
                     case 'x', 'X':
-                        item = "%x".format(a[index]);
+                        item = doFormat("%x",index);
                         break;
                         
                     default: // do nothing
