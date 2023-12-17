@@ -7,7 +7,7 @@ import std.typecons;
 auto dasformat(Args...)(string source, Args a)
 {
     auto result = "", 
-         pattern = `\$[0-9]+(:(([a-z]|[A-Z])([0-9]|[a-f]|[A-F])?))?`, 
+         pattern = `\$[0-9]+(:(([a-z]|[A-Z])([0-9]|[a-f]|[A-F])?))?`,
          splitted = source.splitter!(Yes.keepSeparators)(pattern.regex);
     
     foreach (s; splitted)
