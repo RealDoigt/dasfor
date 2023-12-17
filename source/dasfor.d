@@ -15,7 +15,7 @@ auto dasformat(Args...)(string source, Args a)
         if (s.matchFirst(regex("^" ~ pattern ~ "$")))
         {
             auto markerSplitted = s.split(":"),
-                 index = s[1..$].to!uint,
+                 index = markerSplitted[0][1..$].to!uint,
                  item = a[index].to!string;
                  
             if (markerSplitted.length == 2)
