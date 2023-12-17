@@ -7,7 +7,7 @@ import std.typecons;
 auto dasformat(Args...)(string source, Args a)
 {
     auto result = "", 
-         pattern = `\$[0-9]+(:([a-z][0-9]?)|([A-Z][0-9]?))?`, 
+         pattern = `\$[0-9]+(:(([a-z]|[A-Z])([0-9]|[a-f]|[A-F])?))?`, 
          splitted = source.splitter!(Yes.keepSeparators)(pattern.regex);
     
     foreach (s; splitted)
@@ -19,53 +19,63 @@ auto dasformat(Args...)(string source, Args a)
                  item = a[index].to!string;
                  
             if (markerSplitted.length == 2)
-                switch (markerSplitted[1])
+                switch (markerSplitted[1][0])
                 {
-                    case "a", "A":
+                    case 'a', 'A':
                         item = "%a".format(a[index]);
                         break;
                         
-                    case "b":
+                    case 'b':
                         item = "%b".format(a[index]);
                         break;
                         
-                    case "c":
+                    case 'c':
                         item = "%c".format(a[index]);
                         break;
                         
-                    case "d":
-                        item = "%d".format(a[index]);
+                    case 'd':
+                    
+                        if (markerSplitted[1].length == 1)
+                            item = "%d".format(a[index]);
+                            
+                        else
+                            item = format("%0" ~ markerSplitted[1][1].to!string.to!uint(16).to!string ~ "d", a[index]);
                         break;
                         
-                    case "e", "E":
+                    case 'e', 'E':
                         item = "%e".format(a[index]);
                         break;
                         
-                    case "f", "F":
-                        item = "%f".format(a[index]);
+                    case 'f', 'F':
+                        
+                        if (markerSplitted[1].length == 1)
+                            item = "%f".format(a[index]);
+                        
+                        else 
+                            item = format("%0." ~ markerSplitted[1][1].to!string.to!uint(16).to!string ~ "f", a[index]);
                         break;
                         
-                    case "g", "G":
+                    case 'g', 'G':
                         item = "%e".format(a[index]);
                         break;
                         
-                    case "o":
+                    case 'o':
                         item = "%o".format(a[index]);
                         break;
                         
-                    case "r":
+                    case 'r':
                         item = "%r".format(a[index]);
                         break;
                     
-                    case "s":
+                    case 's':
                         item = "%s".format(a[index]);
                         break;
                         
-                    case "u":
+                    case 'u':
                         item = "%u".format(a[index]);
                         break;
                     
-                    case "x", "X":
+                    case 'x', 'X':
                         item = "%x".format(a[index]);
                         break;
                         
