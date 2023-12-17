@@ -1,5 +1,6 @@
 module dasfor;
 import std.conv;
+import std.range;
 import std.regex;
 import std.string;
 import std.typecons;
@@ -18,11 +19,11 @@ auto dasformat(Args...)(string source, Args a)
     
     auto result = "", 
          pattern = `\$[0-9]+(:(([a-z]|[A-Z])([0-9]|[a-f]|[A-F])?))?`,
-         splitted = source.splitter!(Yes.keepSeparators)(pattern.regex);
+         splitted = splitter!(Yes.keepSeparators)(" " ~ source, pattern.regex);
     
-    foreach (s; splitted)
+    foreach (i, s; splitted.enumerate)
     {
-        if (s.matchFirst(regex("^" ~ pattern ~ "$")))
+        if (i % 2)
         {
             auto markerSplitted = s.split(":"),
                  index = markerSplitted[0][1..$].to!uint,
@@ -95,7 +96,7 @@ auto dasformat(Args...)(string source, Args a)
             result ~= item;
         }
         
-        else result ~= s;
+        else result ~= i == 0 ? s[1..$] : s;
     }
     
     return result;
