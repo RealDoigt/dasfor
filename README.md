@@ -29,4 +29,4 @@ Output:
 `abc world hello world hello abc`
 
 ### IMPORTANT TO KNOW
-The function expects you to give it valid arguments. If you get out of bounds, it's your problem!
+The function expects you to give it valid arguments. If you get out of bounds or use the wrong specifiers, it's your problem!
