@@ -83,30 +83,31 @@ auto dasformat(Args...)(string source, Args a)
                         
                         auto f = "%0.2f", glyph = "", before = true;
                         
-                        final switch (markerSplitted[1][1].to!string.toLower)
-                        {
-                            case "0": before = false; goto case;
-                            case "1": glyph  = "$";       break;
-                            case "2": before = false; goto case;
-                            case "3": glyph  = "¢"; 
-                                      f      = "%d";      break;
-                            case "4": before = false; goto case;
-                            case "5": glyph  = "€";       break;
-                            case "6": glyph  = "円";
-                                      before = false;     break;
-                            case "7": glyph  = "¥";       break;
-                            case "8": glyph  = "₽";
-                                      before = false;     break;
-                            case "9": break;
-                            case "a": glyph  = "₩";       
-                                      before = false;     break;
-                            case "b": glyph  = "₿";
-                                      f      = "%0.9f";   break;
-                            case "c": glyph  = "₴";       break;
-                            case "d": glyph  = "₺";       break;
-                            case "e": glyph  = "₹";       break;
-                            case "f": glyph  = "£";       break;
-                        }
+                        if (markerSplitted[1].length == 2)
+                            final switch (markerSplitted[1][1].to!string.toLower)
+                            {
+                                case "0": before = false; goto case;
+                                case "1": glyph  = "$";       break;
+                                case "2": before = false; goto case;
+                                case "3": glyph  = "¢"; 
+                                        f      = "%d";      break;
+                                case "4": before = false; goto case;
+                                case "5": glyph  = "€";       break;
+                                case "6": glyph  = "円";
+                                        before = false;     break;
+                                case "7": glyph  = "¥";       break;
+                                case "8": glyph  = "₽";
+                                        before = false;     break;
+                                case "9": break;
+                                case "a": glyph  = "₩";       
+                                        before = false;     break;
+                                case "b": glyph  = "₿";
+                                        f      = "%0.9f";   break;
+                                case "c": glyph  = "₴";       break;
+                                case "d": glyph  = "₺";       break;
+                                case "e": glyph  = "₹";       break;
+                                case "f": glyph  = "£";       break;
+                            }
                         
                         if (before) f = glyph ~ f;
                         else f = f ~ glyph;
@@ -137,6 +138,22 @@ auto dasformat(Args...)(string source, Args a)
                         
                     case 'u':
                         item = doFormat("%u",index);
+                        break;
+                        
+                    case 't':
+                        
+                        item = item ~ " K";
+                        
+                        if (markerSplitted[1].length == 2)
+                        {
+                            auto sign = markerSplitted[1][1].to!string.toLower;
+                            
+                            if (sign == 'c') 
+                                item = to!string(item.to!double - 273.15) ~ " °C";
+                                
+                            else if (sign == 'f')
+                                item = to!string(item.to!double * 1.8 - 459.67) ~ " °F";
+                        }
                         break;
                         
                     case 'U':
