@@ -119,13 +119,22 @@ auto dasformat(Args...)(string source, Args a)
                         item = doFormat("%o", index);
                         break;
                         
-                    case 'P', 'p':
+                    case 'P':
                     
                         if (markerSplitted[1].length == 1)
                             item = to!string(item.to!double * 100) ~ " %";
                         
                         else
                             item = format("%0." ~ markerSplitted[1][1].to!string.to!uint(16).to!string ~ "f %", item.to!double * 100);
+                        break;
+                        
+                    case 'p':
+                    
+                        if (markerSplitted[1].length == 1)
+                            item = to!string(item.to!double * 1000) ~ " ‰";
+                        
+                        else
+                            item = format("%0." ~ markerSplitted[1][1].to!string.to!uint(16).to!string ~ "f %", item.to!double * 1000);
                         break;
                         
                     case 'r':
