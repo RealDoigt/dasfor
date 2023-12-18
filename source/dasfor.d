@@ -5,6 +5,7 @@ import std.range;
 import std.regex;
 import std.string;
 import std.typecons;
+import std.algorithm;
 
 auto dasformat(Args...)(string source, Args a)
 {
@@ -73,6 +74,17 @@ auto dasformat(Args...)(string source, Args a)
                         
                     case 'g', 'G':
                         item = doFormat("%g",index);
+                        break;
+                        
+                    case 'k':
+                    
+                        item = item.replace("!?", "‽");
+                        item = item.replace("¿¡", "⸘");
+                        item = item.replace("N°", "№");
+                        item = item.replace("...", "…");
+                        item = item.replace("***", "⁂");
+                        item = item.replace("+-", "±");
+                        item = item.replace("-+", "∓");
                         break;
                         
                     case 'l':
@@ -173,8 +185,6 @@ auto dasformat(Args...)(string source, Args a)
                                 item = to!string(item.to!double * 1.8 - 459.67) ~ " °F";
                         }
                         break;
-                        
-                    case 'T':
                         
                     case 'U':
                         item = item.toUpper;
