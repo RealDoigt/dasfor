@@ -1,4 +1,5 @@
 module dasfor;
+import std.uni;
 import std.conv;
 import std.range;
 import std.regex;
@@ -44,6 +45,10 @@ auto dasformat(Args...)(string source, Args a)
                         item = doFormat("%c",index);
                         break;
                         
+                    case 'C':
+                        item = item.capitalize;
+                        break;
+                        
                     case 'd':
                     
                         if (markerSplitted[1].length == 1)
@@ -67,7 +72,11 @@ auto dasformat(Args...)(string source, Args a)
                         break;
                         
                     case 'g', 'G':
-                        item = doFormat("%e",index);
+                        item = doFormat("%g",index);
+                        break;
+                        
+                    case 'l':
+                        item = item.toLower;
                         break;
                         
                     case 'o':
@@ -93,6 +102,10 @@ auto dasformat(Args...)(string source, Args a)
                         
                     case 'u':
                         item = doFormat("%u",index);
+                        break;
+                        
+                    case 'U':
+                        item = item.toUpper;
                         break;
                     
                     case 'x', 'X':
