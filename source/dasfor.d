@@ -79,6 +79,15 @@ auto dasformat(Args...)(string source, Args a)
                         item = item.toLower;
                         break;
                         
+                    case 'M':
+                    
+                        if (markerSplitted[1].length == 1)
+                            item = to!string(item.to!double * 10_000) ~ " ‱";
+                        
+                        else
+                            item = format("%0." ~ markerSplitted[1][1].to!string.to!uint(16).to!string ~ "f ‱", item.to!double * 10_000);
+                        break;
+                        
                     case 'm':
                         
                         auto f = "%0.2f", glyph = "", before = true;
@@ -134,7 +143,7 @@ auto dasformat(Args...)(string source, Args a)
                             item = to!string(item.to!double * 1000) ~ " ‰";
                         
                         else
-                            item = format("%0." ~ markerSplitted[1][1].to!string.to!uint(16).to!string ~ "f %", item.to!double * 1000);
+                            item = format("%0." ~ markerSplitted[1][1].to!string.to!uint(16).to!string ~ "f ‰", item.to!double * 1000);
                         break;
                         
                     case 'r':
@@ -164,6 +173,8 @@ auto dasformat(Args...)(string source, Args a)
                                 item = to!string(item.to!double * 1.8 - 459.67) ~ " °F";
                         }
                         break;
+                        
+                    case 'T':
                         
                     case 'U':
                         item = item.toUpper;
