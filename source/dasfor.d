@@ -79,8 +79,43 @@ auto dasformat(Args...)(string source, Args a)
                         item = item.toLower;
                         break;
                         
+                    case 'm':
+                        
+                        auto f = "%0.2f", glyph = "", before = true;
+                        
+                        final switch (markerSplitted[1][1].to!string.toLower)
+                        {
+                            case "0": before = false; goto case;
+                            case "1": glyph  = "$";       break;
+                            case "2": before = false; goto case;
+                            case "3": glyph  = "¢"; 
+                                      f      = "%d";      break;
+                            case "4": before = false; goto case;
+                            case "5": glyph  = "€";       break;
+                            case "6": glyph  = "円";
+                                      before = false;     break;
+                            case "7": glyph  = "¥";       break;
+                            case "8": glyph  = "₽";
+                                      before = false;     break;
+                            case "9": break;
+                            case "a": glyph  = "₩";       
+                                      before = false;     break;
+                            case "b": glyph  = "₿";
+                                      f      = "%0.9f";   break;
+                            case "c": glyph  = "₴";       break;
+                            case "d": glyph  = "₺";       break;
+                            case "e": glyph  = "₹";       break;
+                            case "f": glyph  = "£";       break;
+                        }
+                        
+                        if (before) f = glyph ~ f;
+                        else f = f ~ glyph;
+                        
+                        item = doFormat(f, index);
+                        break;
+                        
                     case 'o':
-                        item = doFormat("%o",index);
+                        item = doFormat("%o", index);
                         break;
                         
                     case 'P', 'p':
