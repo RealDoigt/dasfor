@@ -93,8 +93,8 @@ auto dasformat(Args...)(string source, Args a)
                         item = item.replace("--", "‒");
                         item = item.replace("<<", "«");
                         item = item.replace(">>", "»");
-                        item = item.replace("<*", "‹");
-                        item = item.replace(">*", "›");
+                        item = item.replace("<*", "⟨");
+                        item = item.replace(">*", "⟩");
                         break;
                         
                     case 'K':
