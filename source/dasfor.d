@@ -85,6 +85,25 @@ auto dasformat(Args...)(string source, Args a)
                         item = item.replace("***", "⁂");
                         item = item.replace("+-", "±");
                         item = item.replace("-+", "∓");
+                        item = item.replace("|-", "†");
+                        item = item.replace("|=", "‡");
+                        item = item.replace("-.", "–");
+                        item = item.replace("---", "⸺");
+                        item = item.replace("--.", "—");
+                        item = item.replace("--", "‒");
+                        break;
+                        
+                    case 'K':
+                        
+                        item = item.replace("(C)", "©");
+                        item = item.replace("())", "🄯");
+                        item = item.replace("(P)", "℗");
+                        item = item.replace("(R)", "®");
+                        item = item.replace("(SM)", "℠");
+                        item = item.replace("(TM)", "™");
+                        item = item.replace("(MC)", "🅪");
+                        item = item.replace("(M)", "Ⓜ");
+                        item = item.replace("(Wz)", "🄮");
                         break;
                         
                     case 'l':
