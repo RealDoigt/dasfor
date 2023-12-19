@@ -32,32 +32,48 @@ Output:
 
 Dasfor also supports format specifiers. It covers all of D's format specifiers and some more. To use a specifier, just add a colon `:` after the index, then use a one-letter code that corresponsds to the desired functionality; you might also need a numeric argument following that code (hexadecimal number from 1 to F). Here's a table of all the current specifiers:
 
-|Code|Case Sensitive?|Arguments|Description|
-|-|-|-|-|
-|a|No|None|Same as std.string.format's `%a`.|
-|b|Yes|None|Same as std.string.format's `%b`.|
-|c|Yes|None|Same as std.string.format's `%c`.|
-|C|Yes|None|Same as std.string.capitalize|
-|d|Yes|Optional; represents the minimal number of digits (filled by leading 0s if not reached)|Same as std.string.format's `%d`.|
-|e|No|None|Same as std.string.format's `%e`.|
-|f|No|Optional; represents the number of digits after the decimal (filled by 0s if not reached)|Same as std.string.format's `%f`.|
-|g|No|None|Same as std.string.format's `%g`.|
-|k|No|None|Transforms letter combos into characters that aren't always easy to find on a keyboard: * !? -> ‽
-* ¿¡ -> ⸘
-* N° -> №
-* ... -> …
-* \*\*\* -> ⁂
-* \+\- -> ±
-* \-\+ -> ∓
-* \|\- -> †
-* \|= -> ‡
-* \-. -> –
-* \-\- -> ‒
-* \-\-. -> —
-* \-\-\- -> ⸺
-* \<\< -> «
-* \>\> -> »
-* \<\* -> ⟨
-* \>\* -> ⟩|
+-----------------------------------------------------------------------------------------
+Code Case Sensitive? Arguments                           Description
+---- --------------- ----------------------------------- --------------------------------
+a    No              None                                Same as std.string.format's `%a`
+---- --------------- ----------------------------------- --------------------------------
+b    Yes             None                                Same as std.string.format's `%b`
+---- --------------- ----------------------------------- --------------------------------
+c    Yes             None                                Same as std.string.format's `%c`
+---- --------------- ----------------------------------- --------------------------------
+C    Yes             None                                Same as std.string.capitalize
+---- --------------- ----------------------------------- --------------------------------
+d    Yes             Optional; represents the minimal    Same as std.string.format's `%d`
+                     number of digits (filled by leading 
+                     0s if not reached)
+---- --------------- ----------------------------------- --------------------------------
+e    No              None                                Same as std.string.format's `%e`
+---- --------------- ----------------------------------- --------------------------------
+f    No              Optional; represents the number of  Same as std.string.format's `%f`
+                     digits after the decimal (filled by 
+                     0s if not reached)
+---- --------------- ----------------------------------- --------------------------------
+g    No              None                                Same as std.string.format's `%g`
+---- --------------- ----------------------------------- --------------------------------
+k    No              None                                Transforms letter combos into 
+                                                         characters that aren't always 
+                                                         easy to find on a keyboard: 
+                                                         * !? -> ‽
+                                                         * ¿¡ -> ⸘
+                                                         * N° -> №
+                                                         * ... -> …
+                                                         * \*\*\* -> ⁂
+                                                         * \+\- -> ±
+                                                         * \-\+ -> ∓
+                                                         * \|\- -> †
+                                                         * \|= -> ‡
+                                                         * \-. -> –
+                                                         * \-\- -> ‒
+                                                         * \-\-. -> —
+                                                         * \-\-\- -> ⸺
+                                                         * \<\< -> «
+                                                         * \>\> -> »
+                                                         * \<\* -> ⟨
+                                                         * \>\* -> ⟩
 ### IMPORTANT TO KNOW
 The function expects you to give it valid arguments. If you get out of bounds or use the wrong specifiers, it's your problem!
