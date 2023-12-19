@@ -1,6 +1,7 @@
 module dasfor;
 import std.uni;
 import std.conv;
+import std.stdio;
 import std.range;
 import std.regex;
 import std.string;
@@ -227,4 +228,14 @@ auto dasformat(Args...)(string source, Args a)
     }
     
     return result;
+}
+
+void daswrite(Args...)(string source, Args a)
+{
+    dasformat(source, a).write;
+}
+
+void daswriteln(Args...)(string source, Args a)
+{
+    dasformat(source, a).writeln;
 }

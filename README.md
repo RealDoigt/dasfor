@@ -103,6 +103,9 @@ lists for k, K and m (because github's markdown is limited and doesn't allow mul
     * D -> turkish lira
     * E -> rupee
     * F -> pound
+
+## Write Functions
+Now also comes with convenient terminal `daswrite` and `daswriteln` functions which are direct equivalents of doing something like `write(dasformat(str, params...))`.
     
 ### IMPORTANT TO KNOW
 The function expects you to give it valid arguments. If you get out of bounds or use the wrong specifiers, it's your problem!
