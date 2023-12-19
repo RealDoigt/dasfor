@@ -3,7 +3,7 @@
 		"Doigt"
 	],
 	"copyright": "Copyright © 2023, Doigt",
-	"description": "A single-function library containing a slightly better string format function.",
+	"description": "A tiny library containing a slightly better string format function.",
 	"license": "mit",
 	"name": "dasfor"
 }
