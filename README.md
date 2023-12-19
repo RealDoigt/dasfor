@@ -57,7 +57,7 @@ Dasfor also supports format specifiers. It covers all of D's format specifiers a
 |U|Yes|None|Same as std.uni.toUpper.|
 |x|No|None|Same as std.string.format's `%x`.|
 
-lists for k and K (because github's markdown is limited and doesn't allow multiline tables with lists inside like Pandoc does):
+lists for k, K and m (because github's markdown is limited and doesn't allow multiline tables with lists inside like Pandoc does):
 * k
     * !? -> ‽
     * ¿¡ -> ⸘
