@@ -42,22 +42,37 @@ Dasfor also supports format specifiers. It covers all of D's format specifiers a
 |e|No|None|Same as std.string.format's `%e`.|
 |f|No|Optional; represents the number of digits after the decimal (filled by 0s if not reached)|Same as std.string.format's `%f`.|
 |g|No|None|Same as std.string.format's `%g`.|
-|k|No|None|Transforms letter combos into characters that aren't always easy to find on a keyboard: * !? -> ‽
-* ¿¡ -> ⸘
-* N° -> №
-* ... -> …
-* \*\*\* -> ⁂
-* \+\- -> ±
-* \-\+ -> ∓
-* \|\- -> †
-* \|= -> ‡
-* \-. -> –
-* \-\- -> ‒
-* \-\-. -> —
-* \-\-\- -> ⸺
-* \<\< -> «
-* \>\> -> »
-* \<\* -> ⟨
-* \>\* -> ⟩|
+|k|No|None|Transforms letter combos into characters that aren't always easy to find on a keyboard (find list below)
+
+
+lists for k and K (because github's markdown is limited and doesn't allow multiline tables with lists inside like Pandoc does):
+* k
+    * !? -> ‽
+    * ¿¡ -> ⸘
+    * N° -> №
+    * ... -> …
+    * \*\*\* -> ⁂
+    * \+\- -> ±
+    * \-\+ -> ∓
+    * \|\- -> †
+    * \|= -> ‡
+    * \-. -> –
+    * \-\- -> ‒
+    * \-\-. -> —
+    * \-\-\- -> ⸺
+    * \<\< -> «
+    * \>\> -> »
+    * \<\* -> ⟨
+    * \>\* -> ⟩
+* K
+    * (C) -> ©
+    * ()) -> 🄯
+    * (P) -> ℗
+    * (R) -> ®
+    * (SM) -> ℠
+    * (TM) -> ™
+    * (MC) -> 🅪
+    * (M) -> Ⓜ
+    * (Wz) -> 🄮
 ### IMPORTANT TO KNOW
 The function expects you to give it valid arguments. If you get out of bounds or use the wrong specifiers, it's your problem!
