@@ -47,6 +47,15 @@ Dasfor also supports format specifiers. It covers all of D's format specifiers a
 |l|Yes|None|Same as std.uni.toLower.|
 |M|Yes|Optional; represents the number of digits after the decimal (filled by 0s if not reached)|Per myriad number notation. Will multiply the input by 10,000|
 |m|Yes|Optional; will format the amount using a specifc glyph and position that glyph according to native usage see list below for list of arguments (Does not try to use the correct decimal sign however)| Money without any specific glyph, same as std.string.format's `%0.2f`|
+|o|Yes|None|Same std.string.format's `%o`.|
+|p|Yes|Optional; represents the number of digits after the decimal (filled by 0s if not reached)|Permille number notation. Will multiply the input by 1,000|
+|P|Yes|Optional; represents the number of digits after the decimal (filled by 0s if not reached)|Percent number notation. Will multiply the input by 100|
+|r|Yes|None|Same as std.string.format's `%r`.|
+|s|Yes|None|Same as std.string.format's `%s`.|
+|t|Yes|Either nothing or C (for Celsius) and F (For farenheit)|Formats the number as an indice of temperature, by default Kelvins, the input is expected to be in Kelvin if if using Celsius or Farenheit.|
+|u|Yes|None|Same as std.string.format's `%u`.|
+|U|Yes|None|Same as std.uni.toUpper.|
+|x|No|None|Same as std.string.format's `%x`.|
 
 lists for k and K (because github's markdown is limited and doesn't allow multiline tables with lists inside like Pandoc does):
 * k

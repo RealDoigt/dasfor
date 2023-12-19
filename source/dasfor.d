@@ -189,10 +189,6 @@ auto dasformat(Args...)(string source, Args a)
                         item = doFormat("%s",index);
                         break;
                         
-                    case 'u':
-                        item = doFormat("%u",index);
-                        break;
-                        
                     case 't':
                         
                         item = item ~ " K";
@@ -207,6 +203,10 @@ auto dasformat(Args...)(string source, Args a)
                             else if (sign == 'f')
                                 item = to!string(item.to!double * 1.8 - 459.67) ~ " °F";
                         }
+                        break;
+                        
+                    case 'u':
+                        item = doFormat("%u",index);
                         break;
                         
                     case 'U':
