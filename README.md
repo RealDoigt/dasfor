@@ -42,8 +42,11 @@ Dasfor also supports format specifiers. It covers all of D's format specifiers a
 |e|No|None|Same as std.string.format's `%e`.|
 |f|No|Optional; represents the number of digits after the decimal (filled by 0s if not reached)|Same as std.string.format's `%f`.|
 |g|No|None|Same as std.string.format's `%g`.|
-|k|No|None|Transforms letter combos into characters that aren't always easy to find on a keyboard (find list below)
-
+|k|Yes|None|Transforms letter combos into characters that aren't always easy to find on a keyboard (find list below).|
+|K|Yes|None|Ditto but for legal characters.|
+|l|Yes|None|Same as std.uni.toLower.|
+|M|Yes|Optional; represents the number of digits after the decimal (filled by 0s if not reached)|Per myriad number notation. Will multiply the input by 10,000|
+|m|Yes|Optional; will format the amount using a specifc glyph and position that glyph according to native usage see list below for list of arguments (Does not try to use the correct decimal sign however)| Money without any specific glyph, same as std.string.format's `%0.2f`|
 
 lists for k and K (because github's markdown is limited and doesn't allow multiline tables with lists inside like Pandoc does):
 * k
@@ -74,5 +77,23 @@ lists for k and K (because github's markdown is limited and doesn't allow multil
     * (MC) -> 🅪
     * (M) -> Ⓜ
     * (Wz) -> 🄮
+* m
+    * 0 -> canadian french dollar
+    * 1 -> dollar
+    * 2 -> canadian french cent
+    * 3 -> cent
+    * 4 -> euro, most languages
+    * 5 -> euro, english
+    * 6 -> yen
+    * 7 -> yen, international use
+    * 8 -> ruble
+    * 9 -> ¤
+    * A -> won
+    * B -> bitcoin
+    * C -> hryvnia
+    * D -> turkish lira
+    * E -> rupee
+    * F -> pound
+    
 ### IMPORTANT TO KNOW
 The function expects you to give it valid arguments. If you get out of bounds or use the wrong specifiers, it's your problem!
