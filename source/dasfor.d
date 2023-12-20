@@ -135,7 +135,7 @@ auto dasformat(Args...)(string source, Args a)
                                 case "1": glyph  = "$";       break;
                                 case "2": before = false; goto case;
                                 case "3": glyph  = "¢"; 
-                                          f      = "%d";      break;
+                                          f      = "%0.0f";      break;
                                 case "4": before = false; goto case;
                                 case "5": glyph  = "€";       break;
                                 case "6": glyph  = "円";
@@ -198,11 +198,11 @@ auto dasformat(Args...)(string source, Args a)
                         {
                             auto sign = markerSplitted[1][1].to!string.toLower;
                             
-                            if (sign == 'c') 
-                                item = to!string(item.to!double - 273.15) ~ " °C";
+                            if (sign == "c") 
+                                item = to!string(item.parse!double - 273.15) ~ " °C";
                                 
-                            else if (sign == 'f')
-                                item = to!string(item.to!double * 1.8 - 459.67) ~ " °F";
+                            else if (sign == "f")
+                                item = to!string(item.parse!double * 1.8 - 459.67) ~ " °F";
                         }
                         break;
                         
