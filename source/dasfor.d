@@ -155,7 +155,7 @@ auto dasformat(Args...)(string source, Args a)
                             }
                         
                         if (before) f = glyph ~ f;
-                        else f = f ~ glyph;
+                        else f ~= glyph;
                         
                         item = doFormat(f, index);
                         break;
