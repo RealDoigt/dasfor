@@ -1,3 +1,5 @@
+# MIGRATED TO CODEBERG
+https://codeberg.org/doigt/dasfor
 # Doigt's Awesome String FORmat
 To use, simply import `dasfor` then call the dasformat function. `dasformat` expects a string and one or more arguments of various types. Inside the string, use $ followed by a number referring to the position of the argument after the string in order of left to right starting at 0. The value matching that position will be interpolated into the string.
 
